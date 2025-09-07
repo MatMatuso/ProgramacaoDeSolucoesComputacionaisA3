@@ -1,1 +1,3 @@
 # ProgramacaoDeSolucoesComputacionaisA3
+HEAD
+ 9824732bfe271348ce3be9ba217ac5ed504fdd7b
