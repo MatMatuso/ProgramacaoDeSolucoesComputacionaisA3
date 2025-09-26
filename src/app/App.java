@@ -21,7 +21,7 @@ public class App extends Composite {
     private LocalResourceManager localResourceManager;
     private Text escreverLogin;
     private Text escreverSenha;
-
+    private Label lblErro;
     public static void main(String[] args) {
         Display tela = new Display();
         Shell conchinha = new Shell(tela, SWT.CLOSE | SWT.TITLE | SWT.MIN);
@@ -73,6 +73,7 @@ public class App extends Composite {
             	  DashboardTela dashboard = new DashboardTela(shell, SWT.NONE);
             	  shell.layout();
               }else {
+            	  lblErro.setVisible(true);
             	  System.out.print("Usuario ou senha Invalidos");
             	  return;
               }
@@ -122,6 +123,13 @@ public class App extends Composite {
         loginMensagem_2_1.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
         loginMensagem_2_1.setFont(localResourceManager.create(FontDescriptor.createFrom("Comic Sans MS", 14, SWT.BOLD | SWT.ITALIC)));
         loginMensagem_2_1.setBounds(235, 248, 68, 25);
+        
+        lblErro = new Label(this, SWT.CENTER);
+        lblErro.setVisible(false);
+        lblErro.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+        lblErro.setFont(localResourceManager.create(FontDescriptor.createFrom("Segoe UI", 9, SWT.NORMAL)));
+        lblErro.setBounds(309, 280, 167, 15);
+        lblErro.setText("Usuário ou senha inválidos");
     }
 
     private void createResourceManager() {

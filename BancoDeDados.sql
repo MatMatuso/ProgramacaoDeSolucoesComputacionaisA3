@@ -19,4 +19,16 @@ insert into Usuarios(nome,cpf,email,cargo,login,senha,perfil) values (
  "Administrador"
 );
 select * from Usuarios;
-drop table Usuarios
+drop table Usuarios;
+create table Projetos(
+ nome text,
+ criador text,
+ participante text,
+ datadecriacao timestamp,
+ ativo boolean
+);
+create table Tarefas(
+ Prazo text,
+ Responsavel text,
+ meta text
+);

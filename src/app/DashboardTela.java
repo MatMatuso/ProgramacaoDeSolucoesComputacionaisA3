@@ -1,6 +1,8 @@
 package app;
 
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.jface.resource.LocalResourceManager;
@@ -44,7 +46,7 @@ public class DashboardTela extends Composite {
         compositeInterno.setSize(scrolledComposite.getClientArea().width, 1000);
 
         
-        for (int i = 1; i <= 3; i++) {
+        for (int i = 1; i <= 10; i++) {
             Composite projeto = new Composite(compositeInterno, SWT.BORDER);
             projeto.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
             projeto.setLayout(new GridLayout(1, false));
@@ -58,17 +60,35 @@ public class DashboardTela extends Composite {
             projeto.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseDown(MouseEvent e) {
-                    System.out.println("Você clicou no Projeto " + projetoNum);
-                }
+                	 
+                	  
+                    Shell popup = new Shell(compositeInterno.getShell(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+                    popup.setText("Configuração do Projeto");
+                    popup.setSize(349, 450); 
+                    popup.setLayout(new GridLayout(1, false));
 
+                    
+                    ConfigProjeto config = new ConfigProjeto(popup, SWT.NONE);
+                    config.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+                    
+                    popup.open();
+
+                    Display display = compositeInterno.getDisplay();
+                    while (!popup.isDisposed()) {
+                        if (!display.readAndDispatch()) {
+                            display.sleep();
+                        }
+                    }
+            
+                }
             });
-        }
         scrolledComposite.setMinSize(compositeInterno.computeSize(SWT.DEFAULT, SWT.DEFAULT));
       
         compositeInterno.setSize(scrolledComposite.getClientArea().width,
                 compositeInterno.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
     }
-
+}
     private void createResourceManager() {
         localResourceManager = new LocalResourceManager(JFaceResources.getResources(), this);
     }
